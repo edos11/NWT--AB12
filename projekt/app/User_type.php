@@ -1,14 +1,12 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
-
-class News extends Model{
-  protected $table = 'news';
+class User_type extends Model{
+  protected $table = 'user_type';
   public $timestamps = false;
   protected $fillable = [
-    'title',
-    'picture',
-    'text'
+    'username',
+    'prvilegion'
   ];
 }
-?>
+ ?>

@@ -8,25 +8,11 @@ use App\Http\Requests;
 
 class ServiceController extends Controller
 {
-  public function index(){
-      //
+  public function show($id){
+    return Service::find($id);
   }
-  public function create(){
-      //
-  }
-  public function store(){
-      //
-  }
-  public function show(){
-      //
-  }
-  public function edit(){
-      //
-  }
-  public function update(){
-      //
-  }
-  public function destroy(){
-      //
-  }  
+    public function destroy($id){
+        Service::find($id)->delete();
+        return 'Uluga izbrisana';
+    }
 }

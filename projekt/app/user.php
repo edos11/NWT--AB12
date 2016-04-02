@@ -1,7 +1,7 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
-class user extends Model{
+class User extends Model{
   protected $table = 'user';
   public $timestamps = false;
   protected $fillable = [
@@ -10,8 +10,9 @@ class user extends Model{
     'name',
     'lastName',
     'telephone',
-    'reservation'
+    'reservation',
+    'newsId',
+    'destinationId'
   ];
-
 }
  ?>

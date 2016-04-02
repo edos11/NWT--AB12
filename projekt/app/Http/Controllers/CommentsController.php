@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class DestinationController extends Controller
+class CommentsController extends Controller
 {
   public function destroy($id){
-      Destination::find($id)->delete();
-      return 'Destinacija izbrisana';
+      Comments::find($id)->delete();
+      return 'Komentar izbrisan';
   }
   public function show($id){
-    return Destination::find($id);
+    return Comments::find($id);
   }
 }

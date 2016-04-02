@@ -46,5 +46,8 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "require-dev": {
+        "f2m2/apidocs": "dev-master"
     }
 }
