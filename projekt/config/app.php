@@ -147,7 +147,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        'F2m2\Apidocs\ApidocsServiceProvider',
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

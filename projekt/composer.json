@@ -6,7 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*",
+        "anhskohbo/no-captcha": "2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -36,18 +37,15 @@
             "php artisan key:generate"
         ],
         "post-install-cmd": [
-            "php artisan clear-compiled",
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan optimize"
         ],
         "post-update-cmd": [
-            "php artisan clear-compiled",
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
         ]
     },
     "config": {
         "preferred-install": "dist"
-    },
-    "require-dev": {
-        "f2m2/apidocs": "dev-master"
     }
 }
