@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Turisticka agencija</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: 'Lato';
+        }
+        .fa-btn {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body id="app-layout" ng-app="newsRecords">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    Laravel
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+
+                <ul class="nav navbar-nav">
+                    <li><a href="home">Home</a></li>
+                    <li><a href="news">News</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div  ng-controller="NewsController">
+
+            <!-- Table-to-load-the-data Part -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>image_link</th>
+                        <th>created_at</th>
+                        <th><button id="btn-add" class="btn btn-primary btn-xs" ng-click="toggle('add', 0)">Add New news</button></th>
+                    </tr>
+                </thead>
+
+
+            <tbody>
+                  
+                  <tr ng-repeat="dfg in news">
+
+                      <td>{{  dfg.id }}</td>
+                      <td>{{ dfg.title }}</td>
+                      <td>{{ dfg.description }}</td>
+                      <td>{{ dfg.created_at }}</td>
+                      <td>
+                          <button class="btn btn-default btn-xs btn-detail" ng-click="toggle('edit', new.id)">Edit</button>
+                          <button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(new.id)">Delete</button>
+                      </td>
+                  </tr>
+              </tbody>
+            </table>
+            <!-- End of Table-to-load-the-data Part -->
+            <!-- Modal (Pop up when detail button clicked) -->
+
+
+
+    <div ng-show="pokazi">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{form_title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="frmNews" class="form-horizontal" novalidate="">
+
+                        <div class="form-group error">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Title</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control has-error" id="title" name="title" placeholder="Title" ng-model="novost.title" ng-required="true">
+                                <span class="help-inline"
+                                ng-show="frmNews.title.$invalid && frmNews.title.$touched">Title field is required</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Image link</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="image_link" name="image_link" placeholder="Image link" ng-model="novost.image_link"
+                                 ng-required="true">
+                                <span class="help-inline"
+                                ng-show="frmNews.image_link.$invalid && frmNews.image_link.$touched">Image link field is required</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="description" name="description" placeholder="Description" ng-model="novost.description"
+                                 ng-required="true">
+                            <span class="help-inline"
+                                ng-show="frmNews.description.$invalid && frmNews.description.$touched">Description field is required</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Created at</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="created_at" name="created_at" placeholder="Created at" ng-model="novost.created_at"
+                                 ng-required="true">
+                            <span class="help-inline"
+                                ng-show="frmNews.created_at.$invalid && frmNews.created_at.$touched">Created at field is required</span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  {{title}}
+                    <button type="button" class="btn btn-primary" id="btn-save" ng-click="save1(modalstate, id)" ng-disabled="frmNews.$invalid">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</nav>
+    <!-- JavaScripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="java_script/newsController.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</body>
+</html>

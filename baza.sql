@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2016 at 12:19 AM
+-- Generation Time: May 18, 2016 at 10:12 PM
 -- Server version: 5.7.9
 -- PHP Version: 5.6.16
 
@@ -17,8 +17,30 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `agencija`
+-- Database: `baza`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `destination`
+--
+
+DROP TABLE IF EXISTS `destination`;
+CREATE TABLE IF NOT EXISTS `destination` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `destination`
+--
+
+INSERT INTO `destination` (`id`, `title`, `description`, `created_at`) VALUES
+(1, 'dawdad', 'awdawd', '2016-05-18 15:46:36');
 
 -- --------------------------------------------------------
 
@@ -38,7 +60,36 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_10_12_000000_create_users_table', 1),
-('2014_10_12_100000_create_password_resets_table', 1);
+('2014_10_12_100000_create_password_resets_table', 1),
+('2016_05_17_131845_news', 1),
+('2016_05_18_154129_destination', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` date NOT NULL,
+  `updated_at` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `image_link`, `description`, `created_at`, `updated_at`) VALUES
+(2, 'fefe', 'sefs', 'ffes', '2000-02-02', '2016-05-18'),
+(3, 'awdawd', 'awdawd', 'awdawd', '2000-01-01', '2016-05-18'),
+(4, 'dadawd', 'adwawdw', 'awdawd', '2011-02-02', '2016-05-18'),
+(5, 'wqd', 'adw', 'awd', '2014-02-20', '2016-05-18');
 
 -- --------------------------------------------------------
 
@@ -77,15 +128,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `username`, `email`, `telephone`, `password`, `confirmed`, `confirmation_code`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Edis', 'Kunic', 'ekunic1', 'ekunic1@etf.unsa.ba', '12589652478', '$2y$10$UjLXMJySnSyPaF3XqBYCEeVjJfTUSN4nYqbP05uuSugaue7pTQfyy', 0, NULL, 'ydbkDrfuhYawGX1Fe2772yySCesRtnXad8WxhhIneqgUVFZy8W5RCHTHHCog', '2016-05-05 15:35:39', '2016-05-05 15:51:15'),
-(2, 'hhhh', 'e fsf', 'fsefsef', 'ekugiz@etf.unsa.ba', '24874287249274', '$2y$10$uwkMQrjOHIA8c1DLN5E1luaNxtllC00PWnnZqTRw06e6zqwtHAnLS', 0, NULL, '0nSouEHc12NluTV1rtUeRqKGhwEkEE4GP2r5WpIUjm8wFUxKgYDkqitVTaTT', '2016-05-10 22:39:14', '2016-05-10 23:02:02');
+(1, 'edis', 'kunic', 'edo', 'ekunic1@etf.unsa.ba', '481479814787197', '$2y$10$MdpQyYnwRu6TAEltYFaiX.K814m/J2QLehzMqQRM0WwKgWsKoRaKi', 0, NULL, 'caXQUuk090LJ5l47nYdkP5x2k393NxEhwYJj1hvNQQBlhjuu9TvFTuljTIJ3', '2016-05-18 15:17:32', '2016-05-18 19:44:06');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
